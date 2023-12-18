@@ -1,8 +1,25 @@
+import enums.StudyProfile;
+import io.XlsReader;
+import model.Student;
+import model.University;
+
+import java.io.IOException;
+import java.util.List;
+
 public class MainClass {
-    public static void main(String[] args) {
-        Student Ivan = new Student("Ivan", "Univer", 4, 5 );
-        University Univer = new University("First", "Ставропольский Машиностроительный Университет", "SMU", 1947, StudyProfile.PHYSICS);
-        System.out.println(Ivan.toString());
-        System.out.println(Univer.toString());
+
+    public static void main(String[] args) throws IOException {
+
+        List<University> universities =
+                XlsReader.readXlsUniversities("src/main/resources/universityInfo.xlsx");
+        for(University university : universities) {
+            System.out.println(university);
+        }
+
+        List<Student> students =
+                XlsReader.readXlsStudents("src/main/resources/universityInfo.xlsx");
+        for(Student student : students) {
+            System.out.println(student);
+        }
     }
 }
